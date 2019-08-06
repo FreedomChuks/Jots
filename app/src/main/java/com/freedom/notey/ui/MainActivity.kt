@@ -1,7 +1,8 @@
-package com.freedom.notey
+package com.freedom.notey.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.freedom.notey.R
 
 class MainActivity : AppCompatActivity() {
 
