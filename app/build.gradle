@@ -42,6 +42,7 @@ dependencies {
     def ktx_viewmodel = "2.2.0-alpha02"
     def nav_version = "1.0.0"
     def koin_version = '2.0.1'
+    def oneAdapter="1.0.0"
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -86,6 +87,8 @@ dependencies {
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    implementation 'com.afollestad:recyclical:0.5.0'
+
 
 
 }

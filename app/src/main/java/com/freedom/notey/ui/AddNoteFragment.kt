@@ -2,10 +2,12 @@ package com.freedom.notey.ui
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.freedom.notey.R
 import com.freedom.notey.databinding.FragmentAddNoteBinding
@@ -74,6 +76,8 @@ class AddNoteFragment : Fragment(),NoteListener {
         }
         return super.onOptionsItemSelected(item)
     }
+
+
 
 }
 
