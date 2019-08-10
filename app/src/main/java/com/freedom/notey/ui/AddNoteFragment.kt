@@ -23,7 +23,7 @@ class AddNoteFragment : Fragment(),NoteListener {
     lateinit var viewmodel:NoteViewModel
 
     override fun Success() {
-        context?.toast("saved sucessfull")
+        context?.toast("saved successful")
     }
 
     override fun error(message: String) {
