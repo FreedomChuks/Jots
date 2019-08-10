@@ -3,7 +3,7 @@
     <data>
         <variable
             name="NoteViewModel"
-            type="com.freedom.notey.viewmodel.AddNoteViewModel" />
+            type="com.freedom.notey.ui.NoteViewModel" />
     </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,7 +11,7 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent"
-    tools:context=".ui.AddNote">
+    tools:context=".ui.AddNoteFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"

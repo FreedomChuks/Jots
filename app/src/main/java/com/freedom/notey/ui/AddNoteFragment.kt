@@ -1,49 +1,35 @@
 package com.freedom.notey.ui
 
 
-import android.os.AsyncTask
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.freedom.notey.R
 import com.freedom.notey.databinding.FragmentAddNoteBinding
-import com.freedom.notey.db.Note
-import com.freedom.notey.db.NoteDatabase
 import com.freedom.notey.utils.NoteListener
 import com.freedom.notey.utils.toast
-import com.freedom.notey.viewmodel.AddNoteViewModel
 import kotlinx.android.synthetic.main.toolbar.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class AddNote : Fragment(),NoteListener {
+class AddNoteFragment : Fragment(),NoteListener {
 
     lateinit var binding:FragmentAddNoteBinding
-    lateinit var viewModel: AddNoteViewModel
 
-    override fun Success(note: Note) {
+    val NoteViewModel:NoteViewModel by viewModel()
 
-            class SaveData: AsyncTask<Void, Void, Void>() {
-                override fun doInBackground(vararg p0: Void?): Void? {
-//                    NoteDatabase(activity!!).getNoteDao.saveNote(note)
-                    return null
-                }
+    lateinit var viewmodel:NoteViewModel
 
-                override fun onPostExecute(result: Void?) {
-                    context?.toast("saved successfully")
-                }
-            }
-        SaveData().execute()
+    override fun Success() {
+        context?.toast("saved sucessfull")
     }
 
     override fun error(message: String) {
         context?.toast(message)
     }
 
-
-    //Todo init view
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,13 +38,16 @@ class AddNote : Fragment(),NoteListener {
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewmodel= ViewModelProvider(this).get(NoteViewModel::class.java)
+
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel=ViewModelProviders.of(this).get(AddNoteViewModel::class.java)
-        binding.noteViewModel=viewModel
-        viewModel.noteListener=this
-
+        binding.noteViewModel=viewmodel
+        viewmodel.noteListener=this
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         val action=(activity as AppCompatActivity).supportActionBar
         action?.setDisplayHomeAsUpEnabled(true)
@@ -81,7 +70,7 @@ class AddNote : Fragment(),NoteListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
         when(item.itemId){
-            R.id.save->{viewModel.saveNotee()}
+            R.id.save->{viewmodel.saveNotee()}
         }
         return super.onOptionsItemSelected(item)
     }

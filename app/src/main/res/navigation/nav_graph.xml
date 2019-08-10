@@ -16,7 +16,7 @@
 
     <fragment
         android:id="@+id/addNote"
-        android:name="com.freedom.notey.ui.AddNote"
+        android:name="com.freedom.notey.ui.AddNoteFragment"
         android:label="AddNote"
         tools:layout="@layout/fragment_add_note" >
         <action
