@@ -2,7 +2,6 @@ package com.freedom.notey.ui
 
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +9,22 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.afollestad.recyclical.datasource.dataSourceTypedOf
+import com.afollestad.recyclical.setup
+import com.afollestad.recyclical.withItem
 import com.freedom.notey.R
+import com.freedom.notey.db.Note
+import com.freedom.notey.utils.NoteViewHolder
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
     val noteViewModel:NoteViewModel by viewModel()
     lateinit var  viewModel:NoteViewModel
-
+     lateinit var recyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,21 +35,34 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel=ViewModelProvider(this).get(noteViewModel::class.java)
+        subscribeObserver()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        subscribeObserver()
+        recyclerView=recy
         btn_add.setOnClickListener{
             val action=HomeFragmentDirections.actionHomeFragmentToAddNote()
             Navigation.findNavController(it).navigate(action)
         }
     }
 
-    fun subscribeObserver(){
+    private fun subscribeObserver(){
         viewModel.loadData().observe(this, Observer {
-            Log.d("Any","$it")
+            val dataSource = dataSourceTypedOf(it)
+            recyclerView.setup {
+                withLayoutManager(GridLayoutManager(context, 2))
+                withDataSource(dataSource)
+                withItem<Note,NoteViewHolder>(R.layout.note_layout){
+                    onBind(::NoteViewHolder){index,item->
+                        title.text=item.Title
+                        note.text=item.Note
+                    }
+                }
+            }
         })
+
     }
+
 
 }

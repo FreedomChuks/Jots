@@ -34,4 +34,8 @@ class NoteViewModel(val noteDao: NoteDao):ViewModel(){
     fun loadData()= liveData {
      emit(noteDao.getAllNote())
     }
+
+    fun DeleteAll()=viewModelScope.launch{
+        noteDao.DeleteAll()
+    }
 }
