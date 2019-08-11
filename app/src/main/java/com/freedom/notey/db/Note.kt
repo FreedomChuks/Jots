@@ -7,8 +7,8 @@ import androidx.room.PrimaryKey
 //Todo name of the class is the same as the table
 @Entity
 data class Note(
-    val Title:String,//column 2
-    val Note:String// column 3
+    val Title:String="",//column 2
+    val Note:String=""// column 3
 ){
     @PrimaryKey(autoGenerate = true)
     var id:Int=0
