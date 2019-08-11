@@ -2,6 +2,7 @@
     <string name="app_name">Nota</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">save</string>
+    <string name="lock">Lock</string>
     <string name="title">Title</string>
     <string name="note">Note</string>
 </resources>
