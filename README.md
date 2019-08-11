@@ -1,6 +1,4 @@
 # Nota
-A note taking app that demonstrate the use of jet-pack components
-
 A note taking app that demonstrate the use of Android Acritecture components and jet-pack components
 # library used
 * Koin for Kotlin DSL Dependency injection lib
