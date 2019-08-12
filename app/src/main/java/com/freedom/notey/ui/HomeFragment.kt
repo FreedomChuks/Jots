@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.afollestad.recyclical.datasource.dataSourceTypedOf
 import com.afollestad.recyclical.setup
 import com.afollestad.recyclical.withItem
@@ -51,7 +52,7 @@ class HomeFragment : Fragment() {
         viewModel.loadData().observe(this, Observer {
             val dataSource = dataSourceTypedOf(it)
             recyclerView.setup {
-                withLayoutManager(GridLayoutManager(context, 2))
+                withLayoutManager(StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL))
                 withDataSource(dataSource)
                 withItem<Note,NoteViewHolder>(R.layout.note_layout){
                     onBind(::NoteViewHolder){index,item->
