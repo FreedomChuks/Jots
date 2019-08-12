@@ -6,13 +6,14 @@ import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.freedom.notey.R
 import com.freedom.notey.databinding.FragmentAddNoteBinding
+import com.freedom.notey.db.Note
 import com.freedom.notey.utils.NoteListener
 import com.freedom.notey.utils.toast
+import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.android.synthetic.main.toolbar.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -20,12 +21,13 @@ class AddNoteFragment : Fragment(), NoteListener {
 
     lateinit var binding: FragmentAddNoteBinding
 
-    val NoteViewModel: NoteViewModel by viewModel()
+    private val noteViewModel: NoteViewModel by viewModel()
 
     lateinit var viewmodel: NoteViewModel
+    private var notes: Note? =null
 
-    override fun Success() {
-        context?.toast("saved successful")
+    override fun Success(message: String) {
+        context?.toast(message)
         findNavController().navigate(AddNoteFragmentDirections.actionAddNoteToHomeFragment())
     }
 
@@ -43,7 +45,7 @@ class AddNoteFragment : Fragment(), NoteListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewmodel = ViewModelProvider(this).get(NoteViewModel::class.java)
+        viewmodel = ViewModelProvider(this).get(noteViewModel::class.java)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -54,6 +56,13 @@ class AddNoteFragment : Fragment(), NoteListener {
         val action = (activity as AppCompatActivity).supportActionBar
         action?.setDisplayHomeAsUpEnabled(true)
         action?.setDisplayShowTitleEnabled(false)
+
+        arguments?.let {
+            notes=AddNoteFragmentArgs.fromBundle(it).note
+            viewmodel.notes=this.notes
+            viewmodel.title=notes?.Title
+            viewmodel.note=notes?.Note
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

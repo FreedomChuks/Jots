@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
-apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: "androidx.navigation.safeargs"
 
 android {
     compileSdkVersion 29
@@ -87,7 +87,9 @@ dependencies {
 
     implementation "android.arch.navigation:navigation-fragment-ktx:$nav_version"
     implementation "android.arch.navigation:navigation-ui-ktx:$nav_version"
+    //afollesad recyclical lib
     implementation 'com.afollestad:recyclical:1.1.0'
+    implementation 'com.afollestad:recyclical-swipe:1.0.1'
 
 
 

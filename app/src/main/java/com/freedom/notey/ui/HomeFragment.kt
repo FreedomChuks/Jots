@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -18,14 +19,19 @@ import com.afollestad.recyclical.withItem
 import com.freedom.notey.R
 import com.freedom.notey.db.Note
 import com.freedom.notey.utils.NoteViewHolder
+import com.freedom.notey.utils.toast
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment() {
 
-    val noteViewModel:NoteViewModel by viewModel()
+    private val noteViewModel:NoteViewModel by viewModel()
     lateinit var  viewModel:NoteViewModel
-     lateinit var recyclerView: RecyclerView
+    lateinit var recyclerView: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,12 +58,23 @@ class HomeFragment : Fragment() {
         viewModel.loadData().observe(this, Observer {
             val dataSource = dataSourceTypedOf(it)
             recyclerView.setup {
+                withEmptyView(emptyview)
                 withLayoutManager(StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL))
                 withDataSource(dataSource)
+
+
                 withItem<Note,NoteViewHolder>(R.layout.note_layout){
-                    onBind(::NoteViewHolder){index,item->
+                    onBind(::NoteViewHolder){ _, item->
                         title.text=item.Title
                         note.text=item.Note
+                    }
+                    onClick { index ->
+                        CoroutineScope(Main).launch {
+                            val action=HomeFragmentDirections.actionHomeFragmentToAddNote()
+                             action.note=viewModel.noteDao.getAllNote()[index]
+                             findNavController().navigate(action)
+                        }
+
                     }
                 }
             }

@@ -2,5 +2,5 @@ package com.freedom.notey.utils
 
 interface NoteListener {
     fun error(message:String)
-    fun Success()
+    fun Success(message: String)
 }
