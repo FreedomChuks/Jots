@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,9 +10,9 @@
     tools:context=".ui.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
         android:background="@color/white"
-        app:liftOnScroll="true"
+        android:layout_width="match_parent"
+        app:elevation="0dp"
         android:layout_height="wrap_content">
         <include layout="@layout/toolbar"/>
     </com.google.android.material.appbar.AppBarLayout>
@@ -33,13 +35,32 @@
         android:tint="@color/colorAccent"
         android:src="@drawable/ic_edit" />
 
-    <ImageView
-        android:id="@+id/emptyview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_add"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/emptystate"
+        android:visibility="gone"
         android:layout_gravity="center_vertical|center_horizontal"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:src="@drawable/empty_list"
+            android:layout_gravity="center_vertical|center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:text="its Feels lonely here"
+            android:textColor="@color/lightblue"
+            android:layout_marginTop="200dp"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

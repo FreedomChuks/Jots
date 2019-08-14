@@ -11,7 +11,11 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_addNote"
-            app:destination="@id/addNote" />
+            app:destination="@id/addNote"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
@@ -21,7 +25,9 @@
         tools:layout="@layout/fragment_add_note" >
         <action
             android:id="@+id/action_addNote_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit" />
         <argument
             app:argType="com.freedom.notey.db.Note"
             android:name="Note"

@@ -1,0 +1,21 @@
+<vector android:height="24dp" android:viewportHeight="48"
+    android:viewportWidth="48" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillAlpha="1" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M14,14L30,14L30,20L14,20ZM36,40.8008L30.6016,35.3984L33.3984,32.6016L36,35.1992L42.6016,28.6016L45.3984,31.3984ZM36,40.8008" android:strokeColor="#00000000"/>
+    <path android:fillAlpha="1" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M36,48C29.3984,48 24,42.6016 24,36C24,29.3984 29.3984,24 36,24C42.6016,24 48,29.3984 48,36C48,42.6016 42.6016,48 36,48ZM36,28C31.6016,28 28,31.6016 28,36C28,40.3984 31.6016,44 36,44C40.3984,44 44,40.3984 44,36C44,31.6016 40.3984,28 36,28ZM36,28" android:strokeColor="#00000000"/>
+    <path android:fillAlpha="0" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M36,26C30.4766,26 26,30.4766 26,36C26,41.5234 30.4766,46 36,46C41.5234,46 46,41.5234 46,36C46,30.4766 41.5234,26 36,26ZM36,26" android:strokeColor="#00000000"/>
+    <path android:fillAlpha="0" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M20,36C20,27.1992 27.1992,20 36,20C37.3984,20 38.8008,20.1992 40,20.6016L40,14.8008L33.1992,8L10,8C8.8008,8 8,8.8008 8,10L8,38C8,39.1992 8.8008,40 10,40L20.6016,40C20.1992,38.8008 20,37.3984 20,36ZM20,36" android:strokeColor="#00000000"/>
+    <path android:fillAlpha="1" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M20.1992,38L10,38L10,10L32.3984,10L38,15.6016L38,20C39.3984,20.1992 40.8008,20.6016 42,21L42,14L34,6L10,6C7.8008,6 6,7.8008 6,10L6,38C6,40.1992 7.8008,42 10,42L21.1992,42C20.6016,40.8008 20.3984,39.3984 20.1992,38ZM20.1992,38" android:strokeColor="#00000000"/>
+    <path android:fillAlpha="0.3" android:fillColor="#000000"
+        android:fillType="nonZero"
+        android:pathData="M25,24.3984C24.3984,24.1992 23.8008,24 23,24C20.1992,24 18,26.1992 18,29C18,30.8008 19,32.1992 20.1992,33.1992C20.8008,29.8008 22.6016,26.8008 25,24.3984ZM25,24.3984" android:strokeColor="#00000000"/>
+</vector>

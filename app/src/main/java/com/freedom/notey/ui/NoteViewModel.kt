@@ -48,4 +48,8 @@ class NoteViewModel(val noteDao: NoteDao):ViewModel(){
     fun DeleteAll()=viewModelScope.launch{
         noteDao.DeleteAll()
     }
+
+    fun Delete(note: Note)=viewModelScope.launch {
+        noteDao.delete(note)
+    }
 }

@@ -48,6 +48,7 @@
         android:inputType="textMultiLine"
         android:background="@android:color/transparent"
         android:hint="@string/note"
+        android:paddingBottom="60dp"
         android:text="@={NoteViewModel.note}"
         android:fontFamily="@font/manrope_regular"
         android:gravity="top"

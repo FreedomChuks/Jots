@@ -52,11 +52,11 @@ class AddNoteFragment : Fragment(), NoteListener {
         super.onActivityCreated(savedInstanceState)
         binding.noteViewModel = viewmodel
         viewmodel.noteListener = this
+
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
         val action = (activity as AppCompatActivity).supportActionBar
         action?.setDisplayHomeAsUpEnabled(true)
         action?.setDisplayShowTitleEnabled(false)
-
         arguments?.let {
             notes=AddNoteFragmentArgs.fromBundle(it).note
             viewmodel.notes=this.notes

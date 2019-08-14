@@ -1,8 +1,13 @@
 <resources>
-    <string name="app_name">Nota</string>
+    <string name="app_name">Jots</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="save">save</string>
     <string name="lock">Lock</string>
     <string name="title">Title</string>
     <string name="note">Note</string>
+    <string name="secure">secure</string>
+    <string name="archive">archive</string>
+    <string name="trash">trash</string>
+    <string name="navigation_drawer_open">Open Navigation Drawer</string>
+    <string name="navigation_drawer_close">Close Navigation Drawer</string>
 </resources>
