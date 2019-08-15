@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
             withSwipeActionOn<Note>(LEFT,RIGHT){
                 color(R.color.white)
                 icon(R.drawable.line)
-                callback { index, item ->
+                callback { _, item ->
                     viewModel.Delete(item)
                     root.snackbar("${item.Title} Deleted")
                     true
