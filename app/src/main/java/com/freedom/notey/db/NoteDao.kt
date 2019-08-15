@@ -1,9 +1,6 @@
 package com.freedom.notey.db
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface NoteDao {
@@ -22,4 +19,7 @@ interface NoteDao {
 
     @Query("Delete From note")
     suspend fun DeleteAll()
+
+    @Update
+    suspend fun UpdateNote(note: Note)
 }

@@ -5,16 +5,17 @@
     app:cardCornerRadius="5dp"
     app:cardElevation="0dp"
     android:background="@drawable/line"
-    android:layout_width="190dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <RelativeLayout
         android:background="@drawable/line"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="10dp">
+        android:padding="15dp">
 
         <TextView
+            android:textStyle="bold"
             android:id="@+id/titles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

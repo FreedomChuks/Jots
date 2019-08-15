@@ -12,8 +12,9 @@ import kotlinx.coroutines.launch
 class NoteViewModel(val noteDao: NoteDao):ViewModel(){
     var title:String?=null
     var note:String?=null
+    var id:Int?=null
     var noteListener: NoteListener?=null
-
+    var notes: Note?=null
 
     fun saveNotee(){
         if (title.isNullOrEmpty()){
@@ -24,18 +25,31 @@ class NoteViewModel(val noteDao: NoteDao):ViewModel(){
             return
         }
         val note= Note(title!!,note!!)
-         insertNote(note)
-         noteListener?.Success()
+        if (notes==null){
+            insertNote(note)
+            noteListener?.Success("saved successful")
+            return
+        }
+        note.id=notes!!.id
+        updateNote(note)
+        noteListener?.Success("note updated")
+
     }
 
     fun insertNote(note:Note)=viewModelScope.launch {
         noteDao.saveNote(note)
     }
-    fun loadData()= liveData {
-     emit(noteDao.getAllNote())
+    fun updateNote(note: Note)=viewModelScope.launch {
+        noteDao.UpdateNote(note)
     }
-
+    fun loadData()= liveData {
+        emit(noteDao.getAllNote())
+    }
     fun DeleteAll()=viewModelScope.launch{
         noteDao.DeleteAll()
+    }
+
+    fun Delete(note: Note)=viewModelScope.launch {
+        noteDao.delete(note)
     }
 }
