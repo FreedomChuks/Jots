@@ -11,8 +11,8 @@ A note taking app that demonstrate the use of Android Acritecture components and
 Still on development
 
 
-
-#MIT License
+# License
+MIT License
 
 Copyright (c) 2019 freedom
 
