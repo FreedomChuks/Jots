@@ -13,6 +13,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.AddNoteFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -40,10 +41,11 @@
             android:layout_marginEnd="15dp"
             android:layout_marginBottom="10dp"
             android:background="@android:color/transparent"
-            android:hint="@string/title"
+            android:hint="Give a title..."
             android:inputType="text|textCapSentences"
             android:text="@={NoteViewModel.title}"
-            android:textSize="17dp" />
+            android:textSize="25sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/note_add"
@@ -68,8 +70,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
-
 
             </LinearLayout>
 
