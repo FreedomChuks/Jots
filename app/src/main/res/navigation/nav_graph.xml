@@ -3,36 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/navigation_home">
     <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.freedom.notey.ui.HomeFragment"
+        android:id="@+id/navigation_home"
+        android:name="com.freedom.notey.ui.main.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_addNote"
-            app:destination="@id/addNote"
+            app:destination="@id/navigation_add"
             app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:launchSingleTop="true"
+            />
+        <action
+            android:id="@+id/action_home_to_secured"
+            app:destination="@id/navigation_secured" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_trash"
+            app:destination="@id/navigation_trash" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_archive"
+            app:destination="@id/navigation_archive" />
     </fragment>
 
     <fragment
-        android:id="@+id/addNote"
-        android:name="com.freedom.notey.ui.AddNoteFragment"
-        android:label="AddNote"
-        tools:layout="@layout/fragment_add_note" >
+        android:id="@+id/navigation_add"
+        android:name="com.freedom.notey.ui.main.AddNoteFragment"
+        tools:layout="@layout/fragment_add_note">
         <action
             android:id="@+id/action_addNote_to_homeFragment"
-            app:destination="@id/homeFragment"
-            app:enterAnim="@anim/fragment_open_enter"
-            app:exitAnim="@anim/fragment_open_exit" />
+            app:destination="@id/navigation_home"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/navigation_home"
+            app:popUpToInclusive="true" />
         <argument
-            app:argType="com.freedom.notey.db.Note"
             android:name="Note"
             android:defaultValue="@null"
+            app:argType="com.freedom.notey.db.Note"
             app:nullable="true" />
+        <action
+            android:id="@+id/action_addNote_to_secureFragment"
+            app:destination="@id/navigation_secured" />
+        <action
+            android:id="@+id/action_addNote_to_archiveFragment"
+            app:destination="@id/navigation_archive" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_archive"
+        android:name="com.freedom.notey.ui.archive.ArchiveFragment"
+        android:label="fragment_archive"
+        tools:layout="@layout/fragment_archive" />
+    <fragment
+        android:id="@+id/navigation_secured"
+        android:name="com.freedom.notey.ui.secureNote.SecureFragment"
+        android:label="fragment_secure"
+        tools:layout="@layout/fragment_secure" />
+    <fragment
+        android:id="@+id/navigation_settings"
+        android:name="com.freedom.notey.ui.SettingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/navigation_supportDevelopment"
+        android:name="com.freedom.notey.ui.SupportFragment"
+        android:label="fragment_support"
+        tools:layout="@layout/fragment_support" />
+    <fragment
+        android:id="@+id/navigation_trash"
+        android:name="com.freedom.notey.ui.trash.trash"
+        android:label="fragment_trash"
+        tools:layout="@layout/fragment_trash" />
 
 </navigation>

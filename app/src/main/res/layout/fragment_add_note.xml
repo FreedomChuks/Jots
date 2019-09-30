@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -7,73 +9,74 @@
             type="com.freedom.notey.ui.NoteViewModel" />
     </data>
 
-    <RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.AddNoteFragment">
+        android:fitsSystemWindows="true"
+        tools:context=".ui.main.AddNoteFragment">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:backgroundTint="@color/white"
-            app:elevation="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:liftOnScroll="true"
+            android:background="@color/white"
+            android:layout_height="wrap_content">
 
-            <include layout="@layout/toolbar" />
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            />
         </com.google.android.material.appbar.AppBarLayout>
 
-
-        <EditText
-            android:id="@+id/title_add"
+        <androidx.core.widget.NestedScrollView
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_below="@id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/app_bar"
-            android:layout_marginStart="14dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"
-            android:background="@android:color/transparent"
-            android:hint="@string/title"
-            android:inputType="text|textCapSentences"
-            android:text="@={NoteViewModel.title}"
-            android:textSize="17dp" />
-
-        <EditText
-            android:id="@+id/note_add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title_add"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:paddingBottom="60dp"
-            android:background="@android:color/transparent"
-            android:fontFamily="@font/manrope_regular"
-            android:gravity="top"
-            android:hint="@string/note"
-            android:inputType="textMultiLine"
-            android:text="@={NoteViewModel.note}" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_alignParentBottom="true">
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_height="match_parent">
+                <EditText
+                    android:id="@+id/title_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="13dp"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/title"
+                    android:fontFamily="@font/notri"
+                    android:inputType="text|textCapSentences"
+                    android:text="@={NoteViewModel.title}"
+                    android:textSize="17sp" />
 
-
-
+                <EditText
+                    android:id="@+id/note_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/title_add"
+                    android:layout_marginStart="15dp"
+                    android:layout_marginEnd="15dp"
+                    android:paddingBottom="60dp"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/manrope_regular"
+                    android:gravity="top"
+                    android:textSize="15sp"
+                    android:hint="@string/note"
+                    android:inputType="textMultiLine"
+                    android:text="@={NoteViewModel.note}" />
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </androidx.core.widget.NestedScrollView>
 
-    </RelativeLayout>
+
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

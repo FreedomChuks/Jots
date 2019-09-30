@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/save"
-        android:icon="@drawable/save"
-        android:title="@string/save"
-        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/lock"
@@ -14,7 +9,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/archive"
+        android:id="@+id/archivenote"
         android:icon="@drawable/ic_outline_archive"
         android:title="@string/archive"
         app:showAsAction="ifRoom" />

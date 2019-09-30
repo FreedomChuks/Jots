@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- These ids are used in both the menu (navigation.xml) and the nav graph (nav_graph.xml).
+         Each menu item and nav graph fragment represent the same logical item. -->
+
+    <item name="navigation_home" type="id"/>
+    <item name="navigation_secured" type="id"/>
+    <item name="navigation_trash" type="id"/>
+    <item name="navigation_settings" type="id"/>
+    <item name="navigation_archive" type="id"/>
+    <item name="navigation_add" type="id"/>
+    <item name="navigation_supportDevelopment" type="id"/>
+</resources>

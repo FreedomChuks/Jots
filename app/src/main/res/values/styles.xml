@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
@@ -6,10 +6,58 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/notri</item>
+        <item name="android:fontFamily">@font/manrope_regular</item>
+
+        <!-- Window decor -->
+        <item name="android:windowLightStatusBar" tools:targetApi="m">@bool/use_light_status</item>
+        <item name="android:statusBarColor">@color/transparent</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="o_mr1">@bool/use_light_navigation</item>
+        <item name="android:navigationBarColor">@color/nav_bar_scrim</item>
+    </style>
+
+    <style name="PinDialogTheme" parent="Theme.MaterialComponents.DialogWhenLarge">
         <item name="android:statusBarColor">@color/colorAccent</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:backgroundTint">@color/colorAccent</item>
+        <item name="android:windowEnterAnimation">@anim/fragment_fade_enter</item>
+        <item name="android:windowAnimationStyle">@anim/fragment_close_exit</item>
+    </style>
+
+    <style name="splashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splashscreen</item>
     </style>
 
 
+<!--    <style name="TextAppearance.IOSched.ToolbarTitle" parent="@style/TextAppearance.Widget.AppCompat.Toolbar.Title">-->
+<!--        <item name="android:fontFamily">@font/google_sans</item>-->
+<!--        <item name="android:textSize" tools:ignore="SpUsage">20dp</item>-->
+<!--    </style>-->
+
+
+    <style name="Widget.IOSched.AppBar" parent="@style/Widget.Design.AppBarLayout">
+        <item name="android:background">?attr/colorSurface</item>
+        <item name="android:elevation">8dp</item>
+    </style>
+
+<!--    <style name="Widget.IOSched.Toolbar" parent="Widget.MaterialComponents.Toolbar">-->
+<!--        <item name="android:paddingEnd">8dp</item>-->
+<!--        <item name="contentInsetStartWithNavigation">?sessionListKeyline</item>-->
+<!--        <item name="popupTheme">@style/AppTheme.PopupTheme</item>-->
+<!--        <item name="titleTextAppearance">@style/TextAppearance.IOSched.ToolbarTitle</item>-->
+<!--    </style>-->
+
+
+    <style name="Widget.Jots.Notes.Card" parent="Widget.MaterialComponents.CardView">
+        <item name="cardElevation">0dp</item>
+        <item name="strokeColor">?android:attr/colorControlHighlight</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardCornerRadius">@dimen/home_card_corner_radius</item>
+    </style>
+
+
+<!--    <style name="Widget.Jots.MultilineBody">-->
+<!--        <item name="android:lineSpacingExtra">4sp</item>-->
+<!--        <item name="android:textColor">?android:textColorSecondary</item>-->
+<!--    </style>-->
 
 </resources>

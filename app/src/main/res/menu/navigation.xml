@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/main_home">
+
+        <item android:id="@+id/navigation_home"
+            android:checkable="true"
+            android:title="@string/Home_title"
+            android:icon="@drawable/ic_edit"/>
+    </group>
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/secure_part">
+
+        <item android:title="@string/secure"
+            android:id="@+id/navigation_secured"
+            android:icon="@drawable/ic_outline_lock_24px"/>
+
+        <item android:title="@string/archive"
+            android:id="@+id/navigation_archive"
+            android:icon="@drawable/ic_outline_archive"/>
+
+    </group>
+
+
+    <item android:title="@string/trash"
+        android:id="@+id/navigation_trash"
+        android:icon="@drawable/ic_delete"/>
+
+
+    <group android:checkableBehavior="single"
+        android:id="@+id/about" >
+        <item
+            android:id="@+id/love"
+            android:icon="@drawable/ic_outline_favorite_border_24px"
+            android:title="@string/support_title"
+            app:contentDescription="@string/support_title"
+            />
+
+        <item
+            android:id="@+id/navigation_settings"
+            android:icon="@drawable/ic_settings"
+            android:title="@string/settings_title"
+            app:contentDescription="@string/settings_title"
+            />
+    </group>
+
+
+</menu>

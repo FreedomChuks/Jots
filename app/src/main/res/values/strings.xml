@@ -10,4 +10,20 @@
     <string name="trash">trash</string>
     <string name="navigation_drawer_open">Open Navigation Drawer</string>
     <string name="navigation_drawer_close">Close Navigation Drawer</string>
+    <string name="search">search</string>
+    <string name="changeview">changeview</string>
+
+
+    <!-- Accessibility -->
+    <string name="a11y_show_navigation" translation_description="Description of the menu button shown on top-level screens.">Show navigation menu</string>
+    <string name="add">Add</string>
+
+    <!-- Settings -->
+    <string name="settings_title" translation_description="Title for the tab that shows all the settings of this app.">Settings</string>
+
+    <!--support development-->
+    <string name="support_title" translation_description="Title for the tab that shows support development of this app.">Support Development</string>
+
+    <string name="Home_title" translation_description="Title for the Home that show the main entry of this app.">Home</string>
+
 </resources>

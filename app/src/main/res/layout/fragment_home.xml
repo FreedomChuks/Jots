@@ -2,65 +2,54 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
-    tools:context=".ui.HomeFragment">
+    tools:context=".ui.main.HomeFragment">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:background="@color/white"
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         app:elevation="0dp"
-        android:layout_height="wrap_content">
-        <include layout="@layout/toolbar"/>
+        app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            app:navigationIcon="@drawable/ic_menu"
+            android:layout_height="?actionBarSize"
+            app:title="Home"
+            app:navigationContentDescription="@string/a11y_show_navigation"
+            />
+
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-        android:id="@+id/recy"
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+        />
+a
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        android:text="@string/add"
+        android:textAllCaps="false"
+        android:textColor="@color/lightblue"
         app:backgroundTint="@color/white"
-        android:tint="@color/colorAccent"
-        android:src="@drawable/ic_edit" />
-
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/emptystate"
-        android:visibility="gone"
-        android:layout_gravity="center_vertical|center_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:src="@drawable/empty_list"
-            android:layout_gravity="center_vertical|center_horizontal"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:text="its Feels lonely here"
-            android:textColor="@color/lightblue"
-            android:layout_marginTop="200dp"
-            />
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
+        app:icon="@drawable/ic_edit"
+        app:iconTint="@color/colorAccent"
+        />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

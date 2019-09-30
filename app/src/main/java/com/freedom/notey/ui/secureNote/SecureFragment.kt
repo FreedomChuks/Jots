@@ -1,4 +1,4 @@
-package com.freedom.notey.ui
+package com.freedom.notey.ui.secureNote
 
 
 import android.os.Bundle

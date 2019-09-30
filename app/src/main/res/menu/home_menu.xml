@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<item android:id="@+id/changeview"
+    android:orderInCategory="2"
+    android:title="@string/changeview"
+    android:icon="@drawable/ic_outline_view"
+    app:showAsAction="ifRoom"
+    />
+
+    <item android:id="@+id/search_badge"
+        android:orderInCategory="1"
+        android:title="@string/search"
+        android:icon="@drawable/ic_search"
+        app:showAsAction="ifRoom"/>
+
+</menu>
