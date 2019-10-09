@@ -9,6 +9,7 @@ import org.koin.dsl.module
 val persistentModule= module {
 
     single {
+
         Room.databaseBuilder(androidApplication(),NoteDatabase::class.java,"note")
             .fallbackToDestructiveMigration() // get correct db version if schema changed
             .build()

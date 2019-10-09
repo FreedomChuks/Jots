@@ -1,7 +1,6 @@
 package com.freedom.notey.ui
 
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
@@ -16,7 +15,6 @@ class NoteViewModel(val noteDao: NoteDao):ViewModel(){
     var id:Int?=null
     var noteListener: NoteListener?=null
     var notes: Note?=null
-    private var data=MutableLiveData<Note?>()
 
 
     fun saveNotee(){
@@ -40,12 +38,10 @@ class NoteViewModel(val noteDao: NoteDao):ViewModel(){
 
     fun insertNote(note:Note)= viewModelScope.launch {
         noteDao.saveNote(note)
-
     }
 
     fun updateNote(note: Note)=viewModelScope.launch {
         noteDao.updateNote(note)
-
     }
 
 

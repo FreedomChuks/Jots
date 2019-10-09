@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.freedom.notey.R
+import com.freedom.notey.utils.launchActivity
 import com.freedom.notey.utils.toast
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -46,8 +47,6 @@ class MainActivity : AppCompatActivity(),NavHost {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
         navHostFragment = supportFragmentManager
             .findFragmentById(R.id.fragment) as NavHostFragment?
 

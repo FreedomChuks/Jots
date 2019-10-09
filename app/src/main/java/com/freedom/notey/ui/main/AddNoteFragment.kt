@@ -40,6 +40,7 @@ class AddNoteFragment : MainNavigationFragment(), NoteListener {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_note, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
@@ -52,6 +53,8 @@ class AddNoteFragment : MainNavigationFragment(), NoteListener {
         toolbar.setNavigationIcon(R.drawable.ic_arrow)
         toolbar.setNavigationOnClickListener { viewmodel.saveNotee() }
     }
+
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -70,11 +73,6 @@ class AddNoteFragment : MainNavigationFragment(), NoteListener {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.add_note_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

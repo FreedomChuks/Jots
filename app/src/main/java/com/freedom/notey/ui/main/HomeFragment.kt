@@ -1,13 +1,17 @@
+
 package com.freedom.notey.ui.main
 
 
+import android.graphics.Canvas
 import android.os.Bundle
-import android.util.Log
 import android.view.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -18,12 +22,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.freedom.notey.R
+import com.freedom.notey.databinding.FragmentHomeBinding
 import com.freedom.notey.db.Note
 import com.freedom.notey.ui.NoteViewModel
 import com.freedom.notey.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.abs
 
 
 class HomeFragment : MainNavigationFragment() {
@@ -31,44 +37,58 @@ class HomeFragment : MainNavigationFragment() {
     private val noteViewModel: NoteViewModel by viewModel()
     private lateinit var  viewModel: NoteViewModel
     private lateinit var adapter:NoteAdapter
-    private lateinit var list :RecyclerView
     private var lists: ArrayList<Note> = ArrayList()
+    private lateinit var binding:FragmentHomeBinding
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view:View =inflater.inflate(R.layout.fragment_home,container,false)
+        binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
+
         viewModel=ViewModelProvider(this).get(noteViewModel::class.java)
-        setupViews(view)
+
+        setupViews()
+
         setupRecylerView()
+
         subscribeObserver()
-        return view
+
+        return binding.root
     }
 
 
     private fun subscribeObserver(){
+
         viewModel.loadData().observe(viewLifecycleOwner, Observer {
-            lists.addAll(it)
-            val newlist=ArrayList<Note>()
-            newlist.addAll(it)
-            adapter.submitList(newlist)
+            it.let {
+                lists.addAll(it)
+
+                val newlist=ArrayList<Note>()
+
+                newlist.addAll(it)
+
+                adapter.submitList(newlist)
+
+                emptylist()
+            }
+
 
         })
     }
 
     private fun setupRecylerView(){
-
         adapter= NoteAdapter(NoteClickLitener {
             val action=HomeFragmentDirections.actionHomeFragmentToAddNote()
             action.note=it
             findNavController().navigate(action)
         })
-        list.apply {
+        binding.recyclerView.apply {
             layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
             adapter=this@HomeFragment.adapter
         }
+
 
         ItemTouchHelper(object : SimpleCallback(
             0,
@@ -83,43 +103,86 @@ class HomeFragment : MainNavigationFragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
                 val note=adapter.currentList[viewHolder.adapterPosition]
+
                 val position=viewHolder.layoutPosition
+
                 lists.removeAt(position)
+
                 viewModel.Delete(note)
+
                 val newlist=ArrayList<Note>()
+
                 newlist.addAll(lists)
                 adapter.submitList(newlist)
                 root.snack("Moved To Trash"){
                     action("Undo"){
+
                         viewModel.insertNote(note)
+
                         lists.add(position,note)
+
                         val newlists=ArrayList<Note>()
+
                         newlists.addAll(lists)
+
                         adapter.submitList(newlists)
 
                     }
                 }
             }
-        }).attachToRecyclerView(list)
+
+            override fun onChildDraw(
+                c: Canvas,
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                dX: Float,
+                dY: Float,
+                actionState: Int,
+                isCurrentlyActive: Boolean
+
+            ) {
+                super.onChildDraw(
+                    c,
+                    recyclerView,
+                    viewHolder,
+                    dX,
+                    dY,
+                    actionState,
+                    isCurrentlyActive
+                )
+
+                when {
+                    dX>0 -> {
+                        val  alpha=1- abs(dX) /viewHolder.itemView.width
+                        viewHolder.itemView.setBackgroundResource(R.drawable.line)
+                        viewHolder.itemView.alpha=alpha
+                        viewHolder.itemView.translationX=dX
+                    }
+                    dX<0 -> {
+                        val  alpha=1- abs(dX) /viewHolder.itemView.width
+                        viewHolder.itemView.setBackgroundResource(R.drawable.line)
+                        viewHolder.itemView.alpha=alpha
+                        viewHolder.itemView.translationX=dX
+                    }
+
+                }
+            }
+        }).attachToRecyclerView(binding.recyclerView)
     }
 
-    private fun setupViews(view: View){
+    private fun setupViews(){
         setHasOptionsMenu(true)
-        list=view.findViewById(R.id.recyclerView)
-        val btnAdd=view.findViewById<Button>(R.id.btn_add)
-        val toolbar=view.findViewById<Toolbar>(R.id.toolbar)
-
-        btnAdd.setOnClickListener {
+        binding.btnAdd.setOnClickListener {
             val action= HomeFragmentDirections.actionHomeFragmentToAddNote()
             Navigation.findNavController(it).navigate(action)
         }
-
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        toolbar.setNavigationOnClickListener { (activity as AppCompatActivity).drawerlayout.openDrawer(
+        (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener { (activity as AppCompatActivity).drawerlayout.openDrawer(
             GravityCompat.START) }
 
-        }
+    }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.home_menu,menu)
@@ -130,14 +193,14 @@ class HomeFragment : MainNavigationFragment() {
 
         when (item.itemId) {
             R.id.changeview -> {
-                if (list.layoutManager is LinearLayoutManager){
+                if (binding.recyclerView.layoutManager is LinearLayoutManager){
 
                     item.icon=resources.getDrawable(R.drawable.ic_outline_view,null)
-                    list.layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+                    binding.recyclerView.layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
 
                 }else{
                     item.icon=resources.getDrawable(R.drawable.ic_grid,null)
-                    list.layoutManager=LinearLayoutManager(context)
+                    binding.recyclerView.layoutManager=LinearLayoutManager(context)
                 }
 
 
@@ -146,15 +209,14 @@ class HomeFragment : MainNavigationFragment() {
         return super.onOptionsItemSelected(item)
     }
 
+    private fun emptylist(){
+        if (adapter.itemCount == 0||adapter.itemCount<0){
+            binding.emptystate.visibility=VISIBLE
+        }else{
+            binding.emptystate.visibility=GONE
+        }
+    }
+
 
 }
-
-
-
-
-
-
-
-
-
 

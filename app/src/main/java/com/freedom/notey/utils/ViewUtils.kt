@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.annotation.IntegerRes
@@ -61,3 +62,8 @@ inline fun <reified T:Any> Activity.launchActivity(
         startActivity(intent)
 
 }
+
+fun logs(message: String){
+    Log.d("tag:Debug",message)
+}
+

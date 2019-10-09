@@ -15,6 +15,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/lines"
         style="@style/Widget.Jots.Notes.Card"
         android:layout_marginTop="@dimen/spacing_micro"
         android:layout_marginStart="@dimen/spacing_micro"
