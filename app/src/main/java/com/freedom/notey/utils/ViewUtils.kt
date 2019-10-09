@@ -65,9 +65,38 @@ fun logs(message: String){
     Log.d("tag:Debug",message)
 }
 
-inline fun SharedPreferences.edit(
-    commit: Boolean=false,
-    action: SharedPreferences.Editor.() -> Unit
-){
 
+//SharedPrefence Extention Method
+inline fun <reified T:Any> SharedPreferences.saveData(Key:String,value:T){
+    val editor = this.edit()
+    when (T::class) {
+        Boolean::class -> editor.putBoolean(Key, value as Boolean)
+        Float::class -> editor.putFloat(Key, value as Float)
+        String::class -> editor.putString(Key, value as String)
+        Int::class -> editor.putInt(Key, value as Int)
+        Long::class -> editor.putLong(Key, value as Long)
+        else -> {
+            if (value is Set<*>) {
+                editor.putStringSet(Key, value as Set<String>)
+            }
+        }
+    }
+    editor.commit()
+}
+
+inline fun <reified T> SharedPreferences.getData(Key:String,defaultValue:T):T
+{
+    when(T::class){
+        Boolean::class->return this.getBoolean(Key,defaultValue as Boolean) as T
+        Float::class->return this.getFloat(Key,defaultValue as Float) as T
+        String::class->return this.getString(Key,defaultValue as String) as T
+        Int::class->return this.getInt(Key,defaultValue as Int) as T
+        Long::class->return this.getLong(Key,defaultValue as Long) as T
+        else->{
+            if (defaultValue is Set<*>){
+                return this.getStringSet(Key,defaultValue as Set<String>) as T
+            }
+        }
+    }
+    return defaultValue
 }

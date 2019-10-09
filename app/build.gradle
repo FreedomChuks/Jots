@@ -89,7 +89,7 @@ dependencies {
     implementation 'com.afollestad:recyclical:1.1.0'
     implementation 'com.afollestad:recyclical-swipe:1.0.1'
 //ktx core
-    implementation 'androidx.core:core-ktx:1.0.1'
+    implementation 'androidx.core:core-ktx:1.1.0'
 
 
 }

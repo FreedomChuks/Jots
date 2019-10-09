@@ -2,6 +2,7 @@
 package com.freedom.notey.ui.main
 
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.os.Bundle
@@ -40,6 +41,7 @@ class HomeFragment : MainNavigationFragment() {
     private lateinit var adapter:NoteAdapter
     private var lists: ArrayList<Note> = ArrayList()
     private lateinit var binding:FragmentHomeBinding
+    lateinit var sharedPreferences: SharedPreferences
 
 
     override fun onCreateView(
@@ -47,7 +49,7 @@ class HomeFragment : MainNavigationFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding=DataBindingUtil.inflate(inflater,R.layout.fragment_home,container,false)
-
+        sharedPreferences=activity!!.applicationContext.getSharedPreferences("mypref", Context.MODE_PRIVATE)
         viewModel=ViewModelProvider(this).get(noteViewModel::class.java)
 
         setupViews()
@@ -86,7 +88,14 @@ class HomeFragment : MainNavigationFragment() {
             findNavController().navigate(action)
         })
         binding.recyclerView.apply {
-            layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+            layoutManager = if (getState().equals("stag")){
+                StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
+            }else{
+                LinearLayoutManager(context)
+            }
+
+            addItemDecoration(ItemDecorator(resources.getDimensionPixelSize(R.dimen.spacing_micro)))
+
             adapter=this@HomeFragment.adapter
         }
 
@@ -199,11 +208,12 @@ class HomeFragment : MainNavigationFragment() {
         when (item.itemId) {
             R.id.changeview -> {
                 if (binding.recyclerView.layoutManager is LinearLayoutManager){
-
+                    saveState("stag")
                     item.icon=resources.getDrawable(R.drawable.ic_outline_view,null)
                     binding.recyclerView.layoutManager=StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL)
 
                 }else{
+                    saveState("vert")
                     item.icon=resources.getDrawable(R.drawable.ic_grid,null)
                     binding.recyclerView.layoutManager=LinearLayoutManager(context)
                 }
@@ -214,14 +224,22 @@ class HomeFragment : MainNavigationFragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    private fun emptylist(){
-        if (adapter.currentList.size==0){
-            binding.emptystate.visibility=VISIBLE
-        }else{
-            binding.emptystate.visibility=GONE
-        }
+    private fun emptylist() = if (adapter.currentList.size==0){
+        binding.emptystate.visibility=VISIBLE
+    }else{
+        binding.emptystate.visibility=GONE
     }
 
+    fun saveState(state:String){
+        sharedPreferences.saveData("layout",state)
+    }
+
+    fun getState():String?{
+        logs("saved satate is ${sharedPreferences.getString("layout","default")}")
+        logs("saved satate is =============== ${sharedPreferences.getData("layout","default")}")
+        return sharedPreferences.getData("layout","stag")
+
+    }
 
 }
 

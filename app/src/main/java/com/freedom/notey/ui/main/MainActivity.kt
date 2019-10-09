@@ -1,5 +1,6 @@
 package com.freedom.notey.ui.main
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -105,6 +106,8 @@ class MainActivity : AppCompatActivity(),NavHost {
             super.onBackPressed()
         }
     }
+
+
 
 
 }
