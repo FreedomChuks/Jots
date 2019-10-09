@@ -24,13 +24,6 @@ class NoteAdapter(val clickLitener: NoteClickLitener) :ListAdapter<Note,ViewHold
         return ViewHolder.from(parent)
     }
 
-    override fun submitList(list: MutableList<Note>?) {
-        super.submitList(list)
-        if (list?.size==0){
-            listener?.Success("empty")
-            Log.d("any"," -----------------list count ${list.size}")
-        }
-    }
 
 }
 

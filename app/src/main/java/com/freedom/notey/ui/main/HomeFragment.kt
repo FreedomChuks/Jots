@@ -116,6 +116,8 @@ class HomeFragment : MainNavigationFragment() {
 
                 newlist.addAll(lists)
                 adapter.submitList(newlist)
+                emptylist()
+
                 root.snack("Moved To Trash"){
                     action("Undo"){
 
@@ -128,6 +130,8 @@ class HomeFragment : MainNavigationFragment() {
                         newlists.addAll(lists)
 
                         adapter.submitList(newlists)
+                        emptylist()
+
 
                     }
                 }
@@ -210,7 +214,7 @@ class HomeFragment : MainNavigationFragment() {
     }
 
     private fun emptylist(){
-        if (adapter.itemCount == 0||adapter.itemCount<0){
+        if (adapter.currentList.size==0){
             binding.emptystate.visibility=VISIBLE
         }else{
             binding.emptystate.visibility=GONE
