@@ -2,6 +2,7 @@
 package com.freedom.notey.ui.main
 
 
+import android.content.SharedPreferences
 import android.graphics.Canvas
 import android.os.Bundle
 import android.view.*

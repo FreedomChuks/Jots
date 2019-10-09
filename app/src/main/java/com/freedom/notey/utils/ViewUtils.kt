@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -18,9 +19,6 @@ fun Context.toast(message:String){
     Toast.makeText(this,message,Toast.LENGTH_LONG).show()
 }
 
-fun View.snackbar(message: String){
-    Snackbar.make(this,message,Snackbar.LENGTH_LONG).show()
-}
 
 infix fun String.concat(other:String)="hello"
 
@@ -67,3 +65,9 @@ fun logs(message: String){
     Log.d("tag:Debug",message)
 }
 
+inline fun SharedPreferences.edit(
+    commit: Boolean=false,
+    action: SharedPreferences.Editor.() -> Unit
+){
+
+}
